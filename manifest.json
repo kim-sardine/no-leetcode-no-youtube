@@ -1,0 +1,35 @@
+{
+    "name":"No Leetcode, No Youtube",
+    "short_name": "NLNY",
+    "description":"To watch youtube, You have to solve a leecode problem of the day.",
+    "manifest_version": 2,
+    "version":"0.1.0",
+    "author":"kim.sardine",
+    "homepage_url": "https://github.com/kim-sardine/no-leetcode-no-youtube",
+    "icons": {
+      "128": "logo.png"
+    },
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+    },
+    "browser_action": {
+      "default_popup": "popup.html"
+    },
+    "content_scripts":[
+      {
+        "matches": ["*://*.youtube.com/*"],
+        "js":["utils.js", "youtube.js"],
+        "run_at": "document_start"
+      },
+      {
+        "matches": ["*://*.leetcode.com/*"],
+        "js":["utils.js", "leetcode.js"],
+        "run_at": "document_idle"
+      }
+    ],
+    "permissions": [
+      "tabs",
+      "storage"
+    ]
+  }
