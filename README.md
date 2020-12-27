@@ -1,9 +1,9 @@
 # No Leetcode, No Youtube (NLNY)
 
-![nlny](icons/white_144.png)
+![nlny](icons/white_128.png)
 
-Youtube with
+You really have to solve a leecode problem to watch youtube
 
 ---
 
-![capture](capture.png)
+![capture](capture.jpg)
