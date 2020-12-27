@@ -5,9 +5,10 @@ function isLeetcodeSubmissionURL(url) {
 
 
 function checkSubmissionTable(tabId) {
-    console.log('checkSubmissionTable');
     setTimeout(() => {
-        chrome.tabs.sendMessage(tabId, {message: 'check-submission-table'});
+        chrome.tabs.sendMessage(tabId, {message: 'check-submission-table'}, (res) => {
+            console.log(res.result)
+        });
     }, 1500);
 }
     
@@ -19,3 +20,13 @@ chrome.tabs.onUpdated.addListener(
         }
     }
 );
+
+// chrome.browserAction.setBadgeText({text: 'your text'});
+
+// chrome.runtime.onMessage.addListener(
+//     function(request, sender, sendResponse) {
+//         if (request.type === 'notification') {
+//             chrome.notifications.create('', request.options);
+//         }
+//     }
+// );

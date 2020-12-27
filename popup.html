@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello!!</h1>
-</body>
+<html>
+    <head>
+        <title>My Test Extension Options</title>
+    </head>
+    <body style="width: 250px;">
+        <div>
+            NLNY Currently <span id="nlny-status"></span>. 
+    
+            <button id="disable-nlny">Disable NLNY</button>
+            <button id="enable-nlny">Enable NLNY</button>
+        </div>
+        <div>          
+            Solve Leetcode every :
+            <select id="hour-unit">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="18">18</option>
+                <option value="24">24</option>
+            </select>
+            hours
+        </div>
+
+
+        <div id="status"></div>
+
+        <script src="options.js"></script>
+    </body>
 </html>
