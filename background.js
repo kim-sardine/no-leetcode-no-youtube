@@ -21,7 +21,7 @@ chrome.tabs.onUpdated.addListener(
     }
 );
 
-// chrome.browserAction.setBadgeText({text: 'your text'});
+// chrome.browserAction.setIcon();
 
 // chrome.runtime.onMessage.addListener(
 //     function(request, sender, sendResponse) {

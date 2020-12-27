@@ -1,13 +1,14 @@
 {
     "name":"No Leetcode, No Youtube",
-    "short_name": "NLNY",
-    "description":"To watch youtube, You have to solve a leecode problem of the day.",
+    "short_name": "nlny",
+    "description":"You really have to solve a leecode problem to watch youtube.",
     "manifest_version": 2,
-    "version":"0.1.0",
+    "version":"20.12.28",
     "author":"kim.sardine",
     "homepage_url": "https://github.com/kim-sardine/no-leetcode-no-youtube",
     "icons": {
-      "128": "logo.png"
+      "48": "icons/white_48.png",
+      "128": "icons/white_144.png"
     },
     "background": {
       "scripts": ["background.js"],

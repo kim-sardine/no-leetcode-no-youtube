@@ -1,0 +1,18 @@
+body {
+    width: 270px;
+}
+
+.line {
+    margin-bottom: 15px;
+}
+
+.btn {
+    margin-left: 15px;
+}
+
+.enable {
+    background-color: greenyellow;
+}
+.disable {
+    background-color: red;
+}

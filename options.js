@@ -3,7 +3,7 @@ function displaySaveMessage() {
     status.textContent = 'Options saved.';
     setTimeout(function() {
         status.textContent = '';
-    }, 750);
+    }, 1000);
 }
 
 function setEnableButtons(enable) {
@@ -41,10 +41,12 @@ function updateHourUnit() {
 function restoreOptions() {
     chrome.storage.sync.get({
         enabled: true,
-        hourUnit: 12
+        hourUnit: 12,
+        lastAcceptedDatetime: "DOES NOT EXIST"
     }, function(option) {
         setEnableButtons(option.enabled);
         document.getElementById('hour-unit').value = option.hourUnit;
+        document.getElementById('lastAcceptedSubmission').textContent = option.lastAcceptedDatetime;
     });
 }
 

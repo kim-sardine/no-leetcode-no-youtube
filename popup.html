@@ -2,16 +2,17 @@
 <html>
     <head>
         <title>My Test Extension Options</title>
+        <link rel="stylesheet" type="text/css" href="popup.css">
     </head>
-    <body style="width: 250px;">
-        <div>
-            NLNY Currently <span id="nlny-status"></span>. 
+    <body>
+        <div class="line">
+            NLNY is currently <b><span id="nlny-status"></span>.</b>
     
-            <button id="disable-nlny">Disable NLNY</button>
-            <button id="enable-nlny">Enable NLNY</button>
+            <button class="btn enable" id="disable-nlny">Disable NLNY</button>
+            <button class="btn disable" id="enable-nlny">Enable NLNY</button>
         </div>
-        <div>          
-            Solve Leetcode every :
+        <div class="line">          
+            You have to solve Leetcode every :
             <select id="hour-unit">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -28,11 +29,14 @@
                 <option value="18">18</option>
                 <option value="24">24</option>
             </select>
-            hours
+            hours to watch youtube.
         </div>
 
+        <div class="line">
+            Your last leetcode accepted submission : <b><span id="lastAcceptedSubmission"></span></b>
+        </div>
 
-        <div id="status"></div>
+        <div class="line" id="status"></div>
 
         <script src="options.js"></script>
     </body>
