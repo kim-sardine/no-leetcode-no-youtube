@@ -1,15 +1,21 @@
+function isLeetcodeSubmissionURL(url) {
+    var reg =  new RegExp(/.*leetcode.com\/problems\/.*\/submissions\//)
+    return url.match(reg);
+}
+
+
+function checkSubmissionTable(tabId) {
+    console.log('checkSubmissionTable');
+    setTimeout(() => {
+        chrome.tabs.sendMessage(tabId, {message: 'check-submission-table'});
+    }, 1500);
+}
+    
 chrome.tabs.onUpdated.addListener(
-    // FIXME: submission 에서 새로고침한건 어떻게 알아낼것인가?
     function(tabId, changeInfo, tab) {
-        if (changeInfo.url) {
-            var reg =  new RegExp(/.*leetcode.com\/problems\/.*\/submissions\//)
-            var found = changeInfo.url.match(reg);
-            if (found) {
-                chrome.tabs.sendMessage(tabId, {
-                    message: 'submission',
-                    url: changeInfo.url
-                })
-            }
+        console.log(changeInfo.status);
+        if (changeInfo.status == 'complete' && isLeetcodeSubmissionURL(tab.url)) {
+            checkSubmissionTable(tabId);
         }
     }
 );

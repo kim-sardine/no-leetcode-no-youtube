@@ -1,29 +1,41 @@
+function getSubmissionTable() {
+    return document.querySelector(".ant-table-tbody");
+
+}
+function isSubmissionTableGenerated() {
+    return getSubmissionTable() !== null;
+}
+
 function isAccepted() {
-    var table = document.querySelector(".ant-table-tbody");
+    var table = getSubmissionTable();
     for (let idx = 0; idx < table.childNodes.length; idx++) {
         var tr = table.childNodes[idx];
-        if (tr.childNodes.length === 5 && tr.childNodes[1].textContent === "Accepted") {
+        if (tr.childNodes.length === 5 &&
+                tr.childNodes[0].textContent.startsWith(getToday()) &&
+                tr.childNodes[1].textContent === "Accepted") {
             return true
         }        
     }
     return false;
 }
 
-// FIXME: 바로 들어오는 요청은 못잡는다
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        if (request.message === 'submission') {
-            // FIXME: 제출시점에 로딩이 걸리는데, 이 다음에 검사를 수행해야함. 그렇지 않으면 체크 못한다.
-            if (isAccepted() === true) {
+        if (request.message === 'check-submission-table') {
+            if ( ! isSubmissionTableGenerated() ) {
+                console.log("Table not generated");
+            }
+            else if (isAccepted()) {
                 var obj = {};
                 obj[getToday()] = true;
-                chrome.storage.sync.set(obj, function() {
+                chrome.storage.sync.set(obj, () => {
                     // Show today mission cleared. e.g. Change icon?
-                    console.log("Mission Clear");
+                    console.log("Mission Clear!");
                 });
+                console.log(true);
             }
             else {
-                console.log("Not Accepted");
+                console.log("No Accepted exists");
             }
         }
     }
