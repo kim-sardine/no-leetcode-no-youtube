@@ -7,11 +7,11 @@
     "author":"kim.sardine",
     "homepage_url": "https://github.com/kim-sardine/no-leetcode-no-youtube",
     "icons": {
-      "48": "icons/white_48.png",
-      "128": "icons/white_128.png"
+      "48": "assets/icons/white_48.png",
+      "128": "assets/icons/white_128.png"
     },
     "background": {
-      "scripts": ["background.js"],
+      "scripts": ["js/background.js"],
       "persistent": false
     },
     "browser_action": {
@@ -20,18 +20,17 @@
     "content_scripts":[
       {
         "matches": ["*://*.youtube.com/*"],
-        "js":["utils.js", "youtube.js"],
+        "js":["js/utils.js", "js/youtube.js"],
         "run_at": "document_start"
       },
       {
         "matches": ["*://*.leetcode.com/*"],
-        "js":["utils.js", "leetcode.js"],
+        "js":["js/utils.js", "js/leetcode.js"],
         "run_at": "document_idle"
       }
     ],
     "permissions": [
       "tabs",
-      "storage",
-      "notifications"
+      "storage"
     ]
   }

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My Test Extension Options</title>
-        <link rel="stylesheet" type="text/css" href="popup.css">
+        <link rel="stylesheet" type="text/css" href="css/popup.css">
     </head>
     <body>
         <div class="line">
             NLNY is currently <b><span id="nlny-status"></span>.</b>
     
-            <button class="btn enable" id="disable-nlny">Disable NLNY</button>
-            <button class="btn disable" id="enable-nlny">Enable NLNY</button>
+            <button class="btn disable" id="disable-nlny">Disable NLNY</button>
+            <button class="btn enable" id="enable-nlny">Enable NLNY</button>
         </div>
         <div class="line">          
             You have to solve Leetcode every :
@@ -33,11 +35,15 @@
         </div>
 
         <div class="line">
-            Your last leetcode accepted submission : <b><span id="lastAcceptedSubmission"></span></b>
+            Last leetcode accepted submission : <b><span id="lastAcceptedSubmission"></span></b>
+        </div>
+
+        <div class="line">
+            Move to random leetcode problem page : <a href="https://leetcode.com/problems/random-one-question/all" target="_blank" rel="noopener noreferrer">🚀🚀</a>
         </div>
 
         <div class="line" id="status"></div>
 
-        <script src="options.js"></script>
+        <script src="js/options.js"></script>
     </body>
 </html>

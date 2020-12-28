@@ -1,14 +1,15 @@
-
 chrome.storage.sync.get({
     enabled: true,
     hourUnit: 12,
     lastAcceptedDatetime: null
 }, function(option) {
-    console.log(option);
     if (option.enabled) {
         if (option.lastAcceptedDatetime == null ||
                 getHourDiffFromNow(option.lastAcceptedDatetime) >= option.hourUnit) {
-            window.location.href = LEETCODE_SHUFFLE_LINK;
+            chrome.runtime.sendMessage({
+                type: 'redirect',
+                redirectUrl: chrome.extension.getURL('redirect_to_leetcode.html')}
+            )
         }
     }
 });

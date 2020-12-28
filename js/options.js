@@ -3,7 +3,7 @@ function displaySaveMessage() {
     status.textContent = 'Options saved.';
     setTimeout(function() {
         status.textContent = '';
-    }, 1000);
+    }, 2500);
 }
 
 function setEnableButtons(enable) {
