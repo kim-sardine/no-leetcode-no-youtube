@@ -19,11 +19,6 @@
     },
     "content_scripts":[
       {
-        "matches": ["*://*.youtube.com/*"],
-        "js":["js/utils.js", "js/youtube.js"],
-        "run_at": "document_start"
-      },
-      {
         "matches": ["*://*.leetcode.com/*"],
         "js":["js/utils.js", "js/leetcode.js"],
         "run_at": "document_idle"

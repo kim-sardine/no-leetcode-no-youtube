@@ -20,7 +20,7 @@ function getLastAcceptedDatetime() {
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.message === 'check-submission-table') {
-            var result = "NOT_ACCEPTED";;
+            var result = "NOT_ACCEPTED";
             if ( ! isSubmissionTableGenerated() ) {
                 console.log("Table not generated");
                 result = "NO_TABLE";
