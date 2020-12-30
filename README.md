@@ -1,4 +1,4 @@
-# No Leetcode, No Youtube (NLNY)
+# No Leetcode, No Youtube (nlny)
 
 ![nlny](assets/icons/white_128.png)
 

@@ -17,38 +17,52 @@ function getLastAcceptedDatetime() {
     return null;
 }
 
+function waitUntilOneRowGenerated(maxSeconds, callback) {
+    if (maxSeconds === 0 || isOneRowExisted()) {
+        callback();
+        return
+    }
+
+    window.setTimeout(function() {
+        waitUntilOneRowGenerated(maxSeconds - 1, callback); 
+    }, 1000);
+}
+
+function isOneRowExisted() {
+    var table = getSubmissionTable();
+    return table.childNodes.length > 0;
+}
+
+function updateSubmission() {
+    chrome.storage.sync.get({lastAcceptedDatetime: null, hourUnit: 12}, function(option) {
+        var lastAcceptedDatetimeOfThisSubmission = getLastAcceptedDatetime();
+        if (lastAcceptedDatetimeOfThisSubmission) {
+            console.log("lastAcceptedDatetimeOfThisSubmission", lastAcceptedDatetimeOfThisSubmission)
+            if (new Date(lastAcceptedDatetimeOfThisSubmission) > new Date(option.lastAcceptedDatetime)) {
+                if (getHourDiffFromNow(lastAcceptedDatetimeOfThisSubmission) < option.hourUnit) {
+                    // Status : Mission Clear. change icon color to blue?
+                    console.log("Mission Clear!");
+                }
+                chrome.storage.sync.set({
+                    lastAcceptedDatetime: lastAcceptedDatetimeOfThisSubmission
+                }, () => {
+                    console.log("Update Latest record")
+                });
+            }
+        }
+    });
+}
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.message === 'check-submission-table') {
-            var result = "NOT_ACCEPTED";
             if ( ! isSubmissionTableGenerated() ) {
-                console.log("Table not generated");
-                result = "NO_TABLE";
+                console.log("Table not generated -> No Submission");
             }
             else {
-                chrome.storage.sync.get({lastAcceptedDatetime: null, hourUnit: 12}, function(option) {
-                    console.log(option);
-                    var lastAcceptedDatetimeOfThisSubmission = getLastAcceptedDatetime();
-                    if (lastAcceptedDatetimeOfThisSubmission) {
-                        console.log("lastAcceptedDatetimeOfThisSubmission", lastAcceptedDatetimeOfThisSubmission)
-                        if (getHourDiffFromNow(lastAcceptedDatetimeOfThisSubmission) < option.hourUnit) {
-                            // Show today mission cleared. e.g. blue icon
-                            console.log("Mission Clear!");
-                            result = "ACCEPTED";
-                            if (new Date(lastAcceptedDatetimeOfThisSubmission) > option.lastAcceptedDatetime) {
-                                chrome.storage.sync.set({
-                                    lastAcceptedDatetime: lastAcceptedDatetimeOfThisSubmission
-                                }, () => {
-                                    consolg.log("Update Latest record")
-                                });
-                            }
-                        }
-                    }
-                });
+                console.log("waitUntilOneRowGenerated");
+                waitUntilOneRowGenerated(3, updateSubmission)
             }
-            sendResponse({
-                result: result
-            });
         }
     }
 );

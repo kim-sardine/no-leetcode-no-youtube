@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NLNY - Redirecting..</title>
-    <script src="js/utils.js"></script>
-    <script src="js/redirect.js"></script>
+    <title>nlny - Redirecting..</title>
     <style>
         body, html {
             height: 100%;
@@ -24,13 +22,15 @@
     <div class="center-me">
         <div style="text-align: center;">
             <img src="assets/icons/white_128.png" alt="logo">
-            <div class="title">
+            <div class="title" id="banner">
                 You have to solve Leetcode
             </div>
             <div class="title">
-                Redirecting to Leetcode in 3 seconds....
+                Redirecting to Leetcode in <span id="time-left"></span> seconds....
             </div>
         </div>
     </div>
+    <script src="js/utils.js"></script>
+    <script src="js/redirect.js"></script>
 </body>
 </html>
