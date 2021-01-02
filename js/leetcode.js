@@ -1,9 +1,17 @@
 function getSubmissionTable() {
     return document.querySelector(".ant-table-tbody");
-
 }
-function isSubmissionTableGenerated() {
-    return getSubmissionTable() !== null;
+
+function getResultContainer() {
+    return document.querySelector('div[class^="result-container"]');
+}
+
+function getSkeletonContainer() {
+    return document.querySelector('div[class^="skeleton-container"]');
+}
+
+function isSubmissionOnProgress() {
+    return getResultContainer() !== null;
 }
 
 function getLastAcceptedDatetime() {
@@ -17,20 +25,26 @@ function getLastAcceptedDatetime() {
     return null;
 }
 
-function waitUntilOneRowGenerated(maxSeconds, callback) {
-    if (maxSeconds === 0 || isOneRowExisted()) {
+function waitForSubmissionCompleted(timeoutSeconds, callback) {
+    if (timeoutSeconds <= 0 || isSubmissionCompleted()) {
         callback();
         return
     }
 
     window.setTimeout(function() {
-        waitUntilOneRowGenerated(maxSeconds - 1, callback); 
+        waitForSubmissionCompleted(timeoutSeconds - 1, callback); 
     }, 1000);
 }
 
-function isOneRowExisted() {
-    var table = getSubmissionTable();
-    return table.childNodes.length > 0;
+function isSubmissionCompleted() {
+    var resultContainer = getResultContainer();
+    if (resultContainer) {
+        var skeletonContainer = getSkeletonContainer();
+        if (!skeletonContainer && resultContainer.childNodes.length > 0) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function updateSubmission() {
@@ -56,12 +70,12 @@ function updateSubmission() {
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.message === 'check-submission-table') {
-            if ( ! isSubmissionTableGenerated() ) {
-                console.log("Table not generated -> No Submission");
+            if (isSubmissionOnProgress()) {
+                console.log("waitForSubmissionCompleted");
+                waitForSubmissionCompleted(10, updateSubmission)
             }
             else {
-                console.log("waitUntilOneRowGenerated");
-                waitUntilOneRowGenerated(3, updateSubmission)
+                console.log("No Submission");
             }
         }
     }
