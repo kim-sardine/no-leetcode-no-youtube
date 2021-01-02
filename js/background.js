@@ -44,12 +44,16 @@ chrome.tabs.onUpdated.addListener(
     function(tabId, changeInfo, tab) {
         if (isAccessingYoutube(changeInfo, tab)) { // 1. if user access youtube
             chrome.storage.sync.get({
-                enabled: true,
-                hourUnit: 12,
+                features: {
+                    autoRedirection: {
+                        enabled: true,
+                        hourUnit: 12
+                    }
+                },
                 lastAcceptedDatetime: null
             }, function(option) {
-                if (option.enabled) { // 2. If nlny is enabled
-                    if (isTimeOver(option.lastAcceptedDatetime, option.hourUnit)) { // 3. If timeover
+                if (option.features.autoRedirection.enabled) { // 2. If nlny is enabled
+                    if (isTimeOver(option.lastAcceptedDatetime, option.features.autoRedirection.hourUnit)) { // 3. If timeover
                         chrome.tabs.update(tabId, {url: chrome.extension.getURL('redirect_to_leetcode.html')});
                     }
                 }

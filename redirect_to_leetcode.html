@@ -13,6 +13,7 @@
             margin: auto;
         }
         .title {
+            margin: 15px 0;
             font-size: large;
             font-style: italic;
         }
@@ -22,15 +23,17 @@
     <div class="center-me">
         <div style="text-align: center;">
             <img src="assets/icons/white_128.png" alt="logo">
+            <div class="title">
+                It's Leetcode time....
+            </div>
             <div class="title" id="banner">
-                You have to solve Leetcode
             </div>
             <div class="title">
                 Redirecting to Leetcode in <span id="time-left"></span> seconds....
             </div>
         </div>
     </div>
-    <script src="js/utils.js"></script>
+    <script src="js/lib/utils.js"></script>
     <script src="js/redirect.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 const LEETCODE_SHUFFLE_LINK = "https://leetcode.com/problems/random-one-question/algorithms";
 
 function getHourDiffFromNow(target) {

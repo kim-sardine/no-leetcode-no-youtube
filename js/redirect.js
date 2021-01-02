@@ -15,13 +15,12 @@ function timer(seconds, callback) {
 }
 
 chrome.storage.sync.get('lastAcceptedDatetime', (res) => {
-    var text = "It's Leecode time..";
     if (res.lastAcceptedDatetime) {
-        text += " Your last submission : " + res.lastAcceptedDatetime;
+        var text = "Your last submission : " + res.lastAcceptedDatetime;
+        document.getElementById('banner').textContent = text;
     }
-    document.getElementById('banner').textContent = text;
 });
 
 window.addEventListener("load", function(){
-    timer(3, redirect);
+    timer(5, redirect);
 });

@@ -10,6 +10,10 @@ function getSkeletonContainer() {
     return document.querySelector('div[class^="skeleton-container"]');
 }
 
+function getDesctiption() {
+    return document.querySelector('div[class^="description"]');
+}
+
 function isSubmissionOnProgress() {
     return getResultContainer() !== null;
 }
@@ -48,12 +52,19 @@ function isSubmissionCompleted() {
 }
 
 function updateSubmission() {
-    chrome.storage.sync.get({lastAcceptedDatetime: null, hourUnit: 12}, function(option) {
+    chrome.storage.sync.get({
+        features: {
+            autoRedirection: {
+                hourUnit: 12
+            }
+        },
+        lastAcceptedDatetime: null,
+    }, function(option) {
         var lastAcceptedDatetimeOfThisSubmission = getLastAcceptedDatetime();
         if (lastAcceptedDatetimeOfThisSubmission) {
             console.log("lastAcceptedDatetimeOfThisSubmission", lastAcceptedDatetimeOfThisSubmission)
             if (new Date(lastAcceptedDatetimeOfThisSubmission) > new Date(option.lastAcceptedDatetime)) {
-                if (getHourDiffFromNow(lastAcceptedDatetimeOfThisSubmission) < option.hourUnit) {
+                if (getHourDiffFromNow(lastAcceptedDatetimeOfThisSubmission) < option.features.autoRedirection.hourUnit) {
                     // Status : Mission Clear. change icon color to blue?
                     console.log("Mission Clear!");
                 }
@@ -67,6 +78,19 @@ function updateSubmission() {
     });
 }
 
+function convertToMarkdown(description) {
+    var title = description.childNodes[0].childNodes[0].innerText;
+    var difficulty = description.childNodes[0].childNodes[1].childNodes[0].innerText.toLowerCase();
+    var content = description.childNodes[1].childNodes[0];
+
+    var turndownService = new TurndownService();
+    turndownService.use(turndownPluginGfm.tables)
+    turndownService = turndownService.keep(['pre']);
+    content = turndownService.turndown(content);
+
+    return `${title} (${difficulty})\n\n` + content;
+}
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request.message === 'check-submission-table') {
@@ -76,6 +100,20 @@ chrome.runtime.onMessage.addListener(
             }
             else {
                 console.log("No Submission");
+            }
+        }
+        else if (request.message === 'copy-problem-to-clipboard') {
+            var description = getDesctiption();
+            if (description) {
+                try {
+                    var markdown = convertToMarkdown(description);
+                    sendResponse({markdown: markdown});
+                } catch (error) {
+                    sendResponse({error: error.message});
+                }
+            }
+            else {
+                sendResponse({error: "Can't find problem description"});
             }
         }
     }

@@ -20,7 +20,12 @@
     "content_scripts":[
       {
         "matches": ["*://*.leetcode.com/problems/*"],
-        "js":["js/utils.js", "js/leetcode.js"],
+        "js":[
+          "js/lib/utils.js",
+          "js/lib/turndown-plugin-gfm.js",
+          "js/lib/turndown.js",
+          "js/leetcode.js"
+        ],
         "run_at": "document_end"
       }
     ],

@@ -7,43 +7,55 @@
         <link rel="stylesheet" type="text/css" href="css/popup.css">
     </head>
     <body>
-        <div class="line">
-            <b>nlny</b>  is currently <b><span id="nlny-status"></span>.</b>
-    
-            <button class="btn disable" id="disable-nlny">disable <b>nlny</b></button>
-            <button class="btn enable" id="enable-nlny">enable <b>nlny</b></button>
-        </div>
-        <div class="line">          
-            You can watch Youtube for :
-            <select id="hour-unit">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="18">18</option>
-                <option value="24">24</option>
-            </select>
-            hours when you solve one Leetcode problem.
+        <div class="box">
+            <div>
+                <label for="auto-redirection">
+                    <input id="auto-redirection" type="checkbox" value="test" />
+                    <b>Youtube Auto Redirection</b>
+                </label>
+            </div>
+            <div>
+                You can watch Youtube for 
+                <select id="ar-hour-unit">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="18">18</option>
+                    <option value="24">24</option>
+                </select>
+                hours when you solve one Leetcode problem.
+            </div>
         </div>
 
-        <div class="line">
+        <div class="divider"></div>
+
+        <div>
+            Move to random leetcode problem page <a href="https://leetcode.com/problems/random-one-question/algorithms" target="_blank" rel="noopener noreferrer">🚀</a>
+        </div>
+
+        <div class="divider border"></div>
+
+        <div>
+            Copy problem to clipboard (in markdown) : <a id="copy-problem-to-clipboard" href="#">📋</a>
+        </div>
+
+        <div class="divider border"></div>
+
+        <div>
             Last leetcode accepted submission : <b><span id="lastAcceptedSubmission"></span></b>
         </div>
 
-        <div class="line">
-            Move to random leetcode problem page : <a href="https://leetcode.com/problems/random-one-question/algorithms" target="_blank" rel="noopener noreferrer">🚀🚀</a>
-        </div>
+        <div id="status" style="margin-top: 10px; font-style: italic;"></div>
 
-        <div class="line" id="status" style="font-style: italic;"></div>
-
-        <script src="js/options.js"></script>
+        <script src="js/popup.js"></script>
     </body>
 </html>

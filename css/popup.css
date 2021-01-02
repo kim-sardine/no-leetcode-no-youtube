@@ -2,17 +2,20 @@ body {
     width: 300px;
 }
 
-.line {
-    margin-bottom: 15px;
+.box {
+    border: 1px solid black;
+    padding: 10px;
 }
 
-.btn {
-    margin-left: 15px;
+.divider {
+    margin: 10px 0;
 }
 
-.enable {
-    background-color: greenyellow;
+.border {
+    border-top: 1px solid #bbb;
 }
-.disable {
-    background-color: red;
+
+input[type="checkbox"]
+{
+    vertical-align:middle;
 }
