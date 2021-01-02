@@ -1,8 +1,10 @@
 # No Leetcode, No Youtube (nlny)
 
+> Chrome Extension
+
 ![nlny](assets/icons/white_128.png)
 
-You really have to solve a leecode problem to watch youtube
+Wanna watch Youtube? Solve Leetcode first
 
 ---
 
