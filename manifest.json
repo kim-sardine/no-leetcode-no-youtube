@@ -3,7 +3,7 @@
     "short_name": "nlny",
     "description":"Wanna watch Youtube? Solve Leetcode first",
     "manifest_version": 2,
-    "version":"20.12.31",
+    "version":"21.01.02",
     "author":"kim.sardine",
     "homepage_url": "https://github.com/kim-sardine/no-leetcode-no-youtube",
     "icons": {
