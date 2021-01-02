@@ -16,13 +16,10 @@ function isYoutubeURL(url) {
 }
 
 function isTimeOver(lastAcceptedDatetime, hourUnit) {
-    console.log(lastAcceptedDatetime);
-    console.log(hourUnit);
     if (lastAcceptedDatetime) {
         var lastAcceptedDate = new Date(lastAcceptedDatetime);
         var now = new Date();
         var diffInHours = Math.floor(now-lastAcceptedDate / 3.6e6);
-        console.log(diffInHours);
         if (diffInHours < hourUnit) {
             return false; // can watch youtube
         }
@@ -43,8 +40,6 @@ function checkSubmissionTable(tabId) {
 
 chrome.tabs.onUpdated.addListener(
     function(tabId, changeInfo, tab) {
-        console.log(changeInfo)
-        console.log(tab)
         if (isAccessingYoutube(changeInfo, tab)) { // 1. if user access youtube
             chrome.storage.sync.get({
                 enabled: true,
