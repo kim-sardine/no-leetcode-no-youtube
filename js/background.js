@@ -19,7 +19,9 @@ function isTimeOver(lastAcceptedDatetime, hourUnit) {
     if (lastAcceptedDatetime) {
         var lastAcceptedDate = new Date(lastAcceptedDatetime);
         var now = new Date();
-        var diffInHours = Math.floor(now-lastAcceptedDate / 3.6e6);
+        var diff = now - lastAcceptedDate;
+        var diffInHours = Math.floor(diff / 3.6e6);
+        console.log("diff :", diff, "diffInHours :", diffInHours, "hourUnit :", hourUnit);
         if (diffInHours < hourUnit) {
             return false; // can watch youtube
         }
