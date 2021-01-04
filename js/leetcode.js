@@ -65,7 +65,7 @@ function updateSubmission() {
             console.log("lastAcceptedDatetimeOfThisSubmission", lastAcceptedDatetimeOfThisSubmission)
             if (new Date(lastAcceptedDatetimeOfThisSubmission) > new Date(option.lastAcceptedDatetime)) {
                 if (getHourDiffFromNow(lastAcceptedDatetimeOfThisSubmission) < option.features.autoRedirection.hourUnit) {
-                    // Status : Mission Clear. change icon color to blue?
+                    chrome.runtime.sendMessage({message: "mission-clear"});
                     console.log("Mission Clear!");
                 }
                 chrome.storage.sync.set({

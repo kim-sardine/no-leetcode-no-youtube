@@ -54,6 +54,8 @@ chrome.tabs.onUpdated.addListener(
             }, function(option) {
                 if (option.features.autoRedirection.enabled) { // 2. If nlny is enabled
                     if (isTimeOver(option.lastAcceptedDatetime, option.features.autoRedirection.hourUnit)) { // 3. If timeover
+                        // red icon & redirect
+                        chrome.browserAction.setIcon({path:'assets/icons/red_48.png'});
                         chrome.tabs.update(tabId, {url: chrome.extension.getURL('redirect_to_leetcode.html')});
                     }
                 }
@@ -61,6 +63,14 @@ chrome.tabs.onUpdated.addListener(
         }
         else if (changeInfo.status == 'complete' && isLeetcodeSubmissionURL(tab.url)) {
             checkSubmissionTable(tabId);
+        }
+    }
+);
+
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        if (request.message === 'mission-clear') {
+            chrome.browserAction.setIcon({path:'assets/icons/blue_48.png'});
         }
     }
 );
