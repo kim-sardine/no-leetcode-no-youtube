@@ -1,9 +1,9 @@
 {
-    "name":"No Leetcode, No Youtube",
+    "name":"nlny - No Leetcode, No Youtube",
     "short_name": "nlny",
     "description":"Wanna watch Youtube? Solve Leetcode first",
     "manifest_version": 2,
-    "version":"21.1.5",
+    "version":"21.1.7",
     "author":"kim.sardine",
     "homepage_url": "https://github.com/kim-sardine/no-leetcode-no-youtube",
     "icons": {

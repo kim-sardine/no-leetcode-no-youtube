@@ -1,4 +1,4 @@
-# No Leetcode, No Youtube (nlny)
+# nlny - No Leetcode, No Youtube
 
 > Chrome Extension
 
