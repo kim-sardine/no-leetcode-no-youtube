@@ -21,6 +21,10 @@ chrome.storage.sync.get('lastAcceptedDatetime', (res) => {
     }
 });
 
+document.getElementById('open-option-page').addEventListener("click", function() {
+    window.open(chrome.runtime.getURL('popup.html'));
+});
+
 window.addEventListener("load", function(){
     timer(5, redirect);
 });

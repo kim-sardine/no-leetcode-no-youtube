@@ -9,13 +9,22 @@
             height: 100%;
             display: grid;
         }
+
         .center-me {
             margin: auto;
         }
+
         .title {
             margin: 15px 0;
             font-size: large;
             font-style: italic;
+        }
+
+        .sub-title {
+            margin: 15px 0;
+            font-size: medium;
+            font-style: italic;
+            color: #808080;
         }
     </style>
 </head>
@@ -29,7 +38,10 @@
             <div class="title" id="banner">
             </div>
             <div class="title">
-                Redirecting to Leetcode in <span id="time-left"></span> seconds....
+                Redirect to Leetcode in <span id="time-left"></span> seconds....
+            </div>
+            <div class="sub-title">
+                You can disable redirection <a href="#" id="open-option-page">here</a>
             </div>
         </div>
     </div>
